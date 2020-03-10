@@ -744,9 +744,9 @@ export function getIncrementalSync() {
   return incremental;
 }
 
-let emulator: boolean;
+let emulator: boolean | null = null;
 export async function isEmulator() {
-  if (!emulator) {
+  if (emulator === null) {
     if (Platform.OS === 'android' || Platform.OS === 'ios' || Platform.OS === 'windows') {
       emulator = await RNDeviceInfo.isEmulator();
     } else {
@@ -767,9 +767,9 @@ export function isEmulatorSync() {
   return emulator;
 }
 
-let tablet: boolean;
+let tablet: boolean | null = null;
 export function isTablet() {
-  if (!tablet) {
+  if (tablet === null) {
     if (Platform.OS === 'android' || Platform.OS === 'ios' || Platform.OS === 'windows') {
       tablet = RNDeviceInfo.isTablet;
     } else {
@@ -793,9 +793,9 @@ export function isPinOrFingerprintSetSync() {
   return false;
 }
 
-let notch: boolean;
+let notch: boolean | null = null;
 export function hasNotch() {
-  if (!notch) {
+  if (notch === null) {
     let _brand = getBrand();
     let _model = getModel();
     notch =
